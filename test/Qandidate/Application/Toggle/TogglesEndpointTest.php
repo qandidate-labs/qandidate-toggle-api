@@ -74,6 +74,31 @@ class TogglesEndpointTest extends WebTestCase
         $this->assertFalse($client->getResponse()->isOk());
     }
 
+    /**
+     * @test
+     */
+    public function it_creates_a_toggle_by_post()
+    {
+        $toggle = json_encode(array(
+                'name' => 'new-toggle',
+                'conditions' => array(
+                    array(
+                        'name' => 'operator-condition',
+                        'key' => 'company_id',
+                        'operator' => array('name' => 'greater-than', 'value' => 42),
+                    ),
+                )
+            )
+        );
+
+        $client  = $this->createClient();
+        $crawler = $client->request('POST', '/toggles', array(), array(), array(), $toggle);
+
+        $response = $client->getResponse();
+        $this->assertTrue($response->isSuccessful());
+        $this->assertTrue($response->isRedirect());
+    }
+
     public function tearDown()
     {
         $keys = $this->app['predis']->keys($this->app['toggle.manager.prefix'] . '*');

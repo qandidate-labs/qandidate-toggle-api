@@ -7,7 +7,9 @@ use Qandidate\Toggle\Serializer\ToggleSerializer;
 use Qandidate\Toggle\ToggleCollection\PredisCollection;
 use Qandidate\Toggle\ToggleManager;
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 $app = new Application();
 
@@ -53,6 +55,22 @@ $app->get('/toggles', function() use ($app) {
     }
 
     return $app->json(array('toggles' => $serializedToggles));
+});
+
+$app->post('/toggles', function(Request $request) use ($app) {
+    $serialized = $request->getContent();
+
+    $data = json_decode($serialized, true);
+
+    if (json_last_error() != JSON_ERROR_NONE) {
+        return new Response('Malformed json in post body.', 400);
+    }
+
+    $toggle = $app['toggle.serializer']->deserialize($data);
+
+    $app['toggle.manager']->add($toggle);
+
+    return new RedirectResponse('/toggles/' . $toggle->getName(), 201);
 });
 
 $app->delete('/toggles/{name}', function($name) use ($app) {
