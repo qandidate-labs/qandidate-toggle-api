@@ -76,7 +76,7 @@ class TogglesEndpointTest extends WebTestCase
 
     public function tearDown()
     {
-        $keys = $this->app['predis']->keys($this->app['toggle.manager.prefix']);
+        $keys = $this->app['predis']->keys($this->app['toggle.manager.prefix'] . '*');
 
         foreach ($keys as $key) {
             $this->app['predis']->del($key);

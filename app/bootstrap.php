@@ -18,6 +18,10 @@ if ($app['env'] === 'dev' || $app['env'] === 'test') {
     $app['debug'] = true;
 }
 
+if ($app['env'] === 'test') {
+    $app['toggle.manager.prefix'] = 'toggle_test_prefix';
+}
+
 $app->register(new Predis\Silex\PredisServiceProvider(), array(
     'predis.parameters' => 'tcp://127.0.0.1:6379'
 ));
@@ -60,9 +64,5 @@ $app->delete('/toggles/{name}', function($name) use ($app) {
 
     return new Response('OK');
 });
-
-if ($app['env'] === 'test') {
-    $app['toggle.manager.prefix'] = 'toggle_test_prefix';
-}
 
 return $app;
