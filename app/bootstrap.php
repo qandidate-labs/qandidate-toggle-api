@@ -1,6 +1,9 @@
 <?php
 
 use Predis\Client;
+use Qandidate\Toggle\Serializer\OperatorConditionSerializer;
+use Qandidate\Toggle\Serializer\OperatorSerializer;
+use Qandidate\Toggle\Serializer\ToggleSerializer;
 use Qandidate\Toggle\ToggleCollection\PredisCollection;
 use Qandidate\Toggle\ToggleManager;
 use Silex\Application;
@@ -22,12 +25,24 @@ $app['toggle.manager']        = $app->share(function ($app) {
     return new ToggleManager($app['toggle.manager.collection']);
 });
 
+$app['toggle.operator_condition_serializer'] = $app->share(function($app) {
+    return new OperatorConditionSerializer(new OperatorSerializer());
+});
+
+$app['toggle.serializer'] = $app->share(function($app) {
+    return new ToggleSerializer($app['toggle.operator_condition_serializer']);
+});
+
 $app->get('/toggles', function() use ($app) {
     $toggles = $app['toggle.manager']->all();
 
-    $names = array_keys($toggles);
+    $serializedToggles = array();
 
-    return $app->json(array('toggles' => $names));
+    foreach ($toggles as $toggle) {
+        $serializedToggles[] = $app['toggle.serializer']->serialize($toggle);
+    }
+
+    return $app->json(array('toggles' => $serializedToggles));
 });
 
 if ($app['env'] === 'test') {
