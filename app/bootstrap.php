@@ -20,4 +20,12 @@ $app['toggle_manager']        = $app->share(function ($app) {
     return new ToggleManager($app['toggle_manager.collection']);
 });
 
+$app->get('/toggles', function() use ($app) {
+    $toggles = $app['toggle_manager']->all();
+
+    $names = array_keys($toggles);
+
+    return $app->json(array('toggles' => $names));
+});
+
 return $app;
