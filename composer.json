@@ -1,0 +1,29 @@
+{
+    "name": "qandidate/toggle-admin",
+    "description": "Admin interface for all your toggles.",
+    "keywords": ["feature", "flipping", "flip", "switch", "bits", "trigger", "toggle", "admin"],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.2",
+        "silex/silex": "1.*",
+        "qandidate/toggle": "dev-develop",
+        "predis/service-provider": "0.4.*"
+    },
+    "require-dev": {
+        "predis/predis": "~0.8"
+    },
+    "suggest": {
+        "predis/predis": "To use the PredisCollection to persist toggles in redis"
+    },
+    "autoload": {
+        "psr-0": {"Qandidate\\Application\\Toggle": "src/"}
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:vonq/qandidate-toggle.git"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
