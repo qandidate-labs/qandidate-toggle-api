@@ -10,7 +10,7 @@ use Silex\Application;
 
 $app = new Application();
 
-$app['env'] = $_ENV['env'] ?: 'dev';
+$app['env'] = isset($_ENV['env']) ? $_ENV['env']: 'dev';
 
 $app->register(new Predis\Silex\PredisServiceProvider(), array(
     'predis.parameters' => 'tcp://127.0.0.1:6379'
