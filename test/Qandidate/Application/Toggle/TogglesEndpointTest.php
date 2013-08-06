@@ -99,6 +99,56 @@ class TogglesEndpointTest extends WebTestCase
         $this->assertTrue($response->isRedirect());
     }
 
+    /**
+     * @test
+     */
+    public function it_updates_a_toggle_on_put()
+    {
+        $toggleData = array(
+            'name' => 'toggling',
+            'conditions' => array(
+                array(
+                    'name' => 'operator-condition',
+                    'key' => 'company_id',
+                    'operator' => array('name' => 'greater-than', 'value' => 42),
+                ),
+            )
+        );
+        $toggle = json_encode($toggleData);
+
+        // Do the PUT
+        $client  = $this->createClient();
+        $crawler = $client->request('PUT', '/toggles/toggling', array(), array(), array(), $toggle);
+
+        $response = $client->getResponse();
+        $this->assertTrue($response->isSuccessful());
+
+        // Check the endpoint!
+        $crawler = $client->request('GET', '/toggles');
+
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertJsonStringEqualsJsonString(
+            json_encode(array('toggles' => array($toggleData))),
+            $client->getResponse()->getContent()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_does_not_accept_a_new_name_on_put()
+    {
+        $toggleData = array('name' => 'new-name', 'conditions' => array());
+        $toggle = json_encode($toggleData);
+
+        // Do the PUT
+        $client  = $this->createClient();
+        $crawler = $client->request('PUT', '/toggles/toggling', array(), array(), array(), $toggle);
+
+        $response = $client->getResponse();
+        $this->assertTrue($response->isClientError());
+    }
+
     public function tearDown()
     {
         $keys = $this->app['predis']->keys($this->app['toggle.manager.prefix'] . '*');

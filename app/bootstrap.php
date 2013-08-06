@@ -57,20 +57,40 @@ $app->get('/toggles', function() use ($app) {
     return $app->json(array('toggles' => $serializedToggles));
 });
 
-$app->post('/toggles', function(Request $request) use ($app) {
+$app['request_to_toggle'] = $app->protect(function(Request $request) use ($app) {
     $serialized = $request->getContent();
 
     $data = json_decode($serialized, true);
 
     if (json_last_error() != JSON_ERROR_NONE) {
-        return new Response('Malformed json in post body.', 400);
+        return null;
     }
 
-    $toggle = $app['toggle.serializer']->deserialize($data);
+    return $app['toggle.serializer']->deserialize($data);
+});
+
+$app->post('/toggles', function(Request $request) use ($app) {
+    if (null === $toggle = $app['request_to_toggle']($request)) {
+        return new Response('Malformed json in post body.', 400);
+    }
 
     $app['toggle.manager']->add($toggle);
 
     return new RedirectResponse('/toggles/' . $toggle->getName(), 201);
+});
+
+$app->put('/toggles/{name}', function(Request $request, $name) use ($app) {
+    if (null === $toggle = $app['request_to_toggle']($request)) {
+        return new Response('Malformed json in post body.', 400);
+    }
+
+    if ($name !== $toggle->getName()) {
+        return new Response('Name of toggle can not be changed.', 400);
+    }
+
+    $app['toggle.manager']->update($toggle);
+
+    return new Response('OK');
 });
 
 $app->delete('/toggles/{name}', function($name) use ($app) {
