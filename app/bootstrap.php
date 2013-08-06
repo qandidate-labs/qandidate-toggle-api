@@ -7,10 +7,16 @@ use Qandidate\Toggle\Serializer\ToggleSerializer;
 use Qandidate\Toggle\ToggleCollection\PredisCollection;
 use Qandidate\Toggle\ToggleManager;
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Response;
 
 $app = new Application();
 
+
 $app['env'] = isset($_ENV['env']) ? $_ENV['env']: 'dev';
+
+if ($app['env'] === 'dev' || $app['env'] === 'test') {
+    $app['debug'] = true;
+}
 
 $app->register(new Predis\Silex\PredisServiceProvider(), array(
     'predis.parameters' => 'tcp://127.0.0.1:6379'
@@ -43,6 +49,16 @@ $app->get('/toggles', function() use ($app) {
     }
 
     return $app->json(array('toggles' => $serializedToggles));
+});
+
+$app->delete('/toggles/{name}', function($name) use ($app) {
+    $removed = $app['toggle.manager']->remove($name);
+
+    if ( ! $removed) {
+        return new Response(sprintf('Unable to delete toggle "%s"', $name), 400);
+    }
+
+    return new Response('OK');
 });
 
 if ($app['env'] === 'test') {

@@ -8,6 +8,6 @@ class WebTestCase extends BaseWebTestCase
 {
     public function createApplication()
     {
-        return require_once __DIR__ . '/../../../../app/bootstrap.php';
+        return require __DIR__ . '/../../../../app/bootstrap.php';
     }
 }

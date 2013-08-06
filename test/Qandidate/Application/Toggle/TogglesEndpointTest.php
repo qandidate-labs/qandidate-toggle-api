@@ -46,6 +46,34 @@ class TogglesEndpointTest extends WebTestCase
         );
     }
 
+    /**
+     * @test
+     */
+    public function it_can_delete_a_toggle()
+    {
+        $client  = $this->createClient();
+        $crawler = $client->request('DELETE', '/toggles/toggling');
+
+        $this->assertTrue($client->getResponse()->isOk());
+
+        $crawler = $client->request('GET', '/toggles');
+        $this->assertTrue($client->getResponse()->isOk());
+
+        $toggles = json_decode($client->getResponse()->getContent(), true);
+        $this->assertCount(0, $toggles['toggles']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_returns_400_on_deleting_non_existing_toggle()
+    {
+        $client  = $this->createClient();
+        $crawler = $client->request('DELETE', '/toggles/nothere');
+
+        $this->assertFalse($client->getResponse()->isOk());
+    }
+
     public function tearDown()
     {
         $keys = $this->app['predis']->keys($this->app['toggle.manager.prefix']);
