@@ -7,6 +7,8 @@ use Silex\Application;
 
 $app = new Application();
 
+$app['env'] = $_ENV['env'] ?: 'dev';
+
 $app->register(new Predis\Silex\PredisServiceProvider(), array(
     'predis.parameters' => 'tcp://127.0.0.1:6379'
 ));
@@ -27,5 +29,9 @@ $app->get('/toggles', function() use ($app) {
 
     return $app->json(array('toggles' => $names));
 });
+
+if ($app['env'] === 'test') {
+    $app['toggle_manager.prefix'] = 'toggle_test_prefix';
+}
 
 return $app;

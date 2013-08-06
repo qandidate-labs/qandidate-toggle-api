@@ -10,7 +10,7 @@
         "predis/service-provider": "0.4.*"
     },
     "require-dev": {
-        "predis/predis": "~0.8"
+        "symfony/browser-kit": "~2.3"
     },
     "suggest": {
         "predis/predis": "To use the PredisCollection to persist toggles in redis"
