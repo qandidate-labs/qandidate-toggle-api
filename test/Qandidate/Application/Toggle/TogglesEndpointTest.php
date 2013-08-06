@@ -13,7 +13,7 @@ class TogglesEndpointTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->loadToggleFixtures($this->app['toggle_manager']);
+        $this->loadToggleFixtures($this->app['toggle.manager']);
     }
 
     /**
@@ -33,7 +33,7 @@ class TogglesEndpointTest extends WebTestCase
 
     public function tearDown()
     {
-        $keys = $this->app['predis']->keys($this->app['toggle_manager.prefix']);
+        $keys = $this->app['predis']->keys($this->app['toggle.manager.prefix']);
 
         foreach ($keys as $key) {
             $this->app['predis']->del($key);
