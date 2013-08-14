@@ -28,16 +28,14 @@ class TogglesEndpointTest extends WebTestCase
         $this->assertJsonStringEqualsJsonString(
             json_encode(
                 array(
-                    'toggles' => array(
-                        array(
-                            'name' => 'toggling',
-                            'conditions' => array(
-                                array(
-                                    'name' => 'operator-condition',
-                                    'key' => 'user_id',
-                                    'operator' => array('name' => 'less-than', 'value' => 42),
-                                ),
-                            )
+                    array(
+                        'name' => 'toggling',
+                        'conditions' => array(
+                            array(
+                                'name' => 'operator-condition',
+                                'key' => 'user_id',
+                                'operator' => array('name' => 'less-than', 'value' => 42),
+                            ),
                         )
                     )
                 )
@@ -60,7 +58,7 @@ class TogglesEndpointTest extends WebTestCase
         $this->assertTrue($client->getResponse()->isOk());
 
         $toggles = json_decode($client->getResponse()->getContent(), true);
-        $this->assertCount(0, $toggles['toggles']);
+        $this->assertCount(0, $toggles);
     }
 
     /**
@@ -128,7 +126,7 @@ class TogglesEndpointTest extends WebTestCase
 
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertJsonStringEqualsJsonString(
-            json_encode(array('toggles' => array($toggleData))),
+            json_encode(array($toggleData)),
             $client->getResponse()->getContent()
         );
     }

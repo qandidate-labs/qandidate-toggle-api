@@ -54,7 +54,7 @@ $app->get('/toggles', function() use ($app) {
         $serializedToggles[] = $app['toggle.serializer']->serialize($toggle);
     }
 
-    return $app->json(array('toggles' => $serializedToggles));
+    return $app->json($serializedToggles);
 });
 
 $app['request_to_toggle'] = $app->protect(function(Request $request) use ($app) {
