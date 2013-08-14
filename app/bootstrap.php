@@ -90,7 +90,7 @@ $app->put('/toggles/{name}', function(Request $request, $name) use ($app) {
 
     $app['toggle.manager']->update($toggle);
 
-    return new Response('OK');
+    return new Response('', 204);
 });
 
 $app->delete('/toggles/{name}', function($name) use ($app) {
