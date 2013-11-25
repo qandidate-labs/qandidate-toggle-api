@@ -36,7 +36,8 @@ class TogglesEndpointTest extends WebTestCase
                                 'key' => 'user_id',
                                 'operator' => array('name' => 'less-than', 'value' => 42),
                             ),
-                        )
+                        ),
+                        'status' => 'conditionally-active'
                     )
                 )
             ),
@@ -110,7 +111,8 @@ class TogglesEndpointTest extends WebTestCase
                     'key' => 'company_id',
                     'operator' => array('name' => 'greater-than', 'value' => 42),
                 ),
-            )
+            ),
+            'status' => 'conditionally-active'
         );
         $toggle = json_encode($toggleData);
 
