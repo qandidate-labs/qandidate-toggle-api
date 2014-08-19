@@ -1,5 +1,6 @@
 <?php
 
+use Igorw\Silex\ConfigServiceProvider;
 use Predis\Client;
 use Qandidate\Toggle\Serializer\OperatorConditionSerializer;
 use Qandidate\Toggle\Serializer\OperatorSerializer;
@@ -13,22 +14,23 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 $app = new Application();
 
-
-$app['env'] = isset($_ENV['env']) ? $_ENV['env']: 'dev';
-
-if ($app['env'] === 'dev' || $app['env'] === 'test') {
-    $app['debug'] = true;
+$configFile = __DIR__ . '/../config.json';
+if (! file_exists($configFile)) {
+    $configFile = __DIR__ . '/../config.json.dist';
 }
 
+$app->register(new ConfigServiceProvider($configFile));
+
+$app['env'] = getenv('env') ?: 'dev';
+
 if ($app['env'] === 'test') {
-    $app['toggle.manager.prefix'] = 'toggle_test_prefix';
+    $app['toggle.manager.prefix'] .= '_test';
 }
 
 $app->register(new Predis\Silex\PredisServiceProvider(), array(
-    'predis.parameters' => 'tcp://127.0.0.1:6379'
+    'predis.parameters' => $app['redis_uri'],
 ));
 
-$app['toggle.manager.prefix']     = 'toggle_namespace';
 $app['toggle.manager.collection'] = $app->share(function ($app) {
     return new PredisCollection($app['toggle.manager.prefix'], $app['predis']);
 });
@@ -67,16 +69,6 @@ $app['request_to_toggle'] = $app->protect(function(Request $request) use ($app) 
     }
 
     return $app['toggle.serializer']->deserialize($data);
-});
-
-$app->post('/toggles', function(Request $request) use ($app) {
-    if (null === $toggle = $app['request_to_toggle']($request)) {
-        return new Response('Malformed json in post body.', 400);
-    }
-
-    $app['toggle.manager']->add($toggle);
-
-    return new RedirectResponse('/toggles/' . $toggle->getName(), 201);
 });
 
 $app->put('/toggles/{name}', function(Request $request, $name) use ($app) {
