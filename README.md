@@ -63,3 +63,7 @@ NOTE: PUT doesn't remove the previous toggle if you rename it. So if you want to
 #### Delete a toggle
 
 `DELETE /toggles/{name}`
+
+## License
+
+MIT, see LICENSE.
