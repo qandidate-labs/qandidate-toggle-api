@@ -3,6 +3,24 @@
     "description": "Api interface for your toggles.",
     "keywords": ["feature", "flipping", "flip", "switch", "bits", "trigger", "toggle", "api"],
     "license": "MIT",
+    "authors": [
+      {
+        "name": "Alexander",
+        "email": "iam.asm89@gmail.com"
+      },
+      {
+        "name": "othillo",
+        "email": "othillo@othillo.nl"
+      },
+      {
+        "name": "Willem-Jan",
+        "email": "wjzijderveld@gmail.com"
+      },
+      {
+        "name": "Qandidate.com",
+        "homepage": "http://labs.qandidate.com/"
+      }
+    ],
     "require": {
         "php": ">=5.3.2",
         "silex/silex": "1.*",
