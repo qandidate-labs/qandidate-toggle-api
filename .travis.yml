@@ -12,7 +12,7 @@ php:
 
 matrix:
     allow_failures:
-        - hhvm-nightly
+        - php: hhvm-nightly
 
 before_script: composer install --dev
 
