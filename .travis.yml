@@ -14,6 +14,8 @@ matrix:
     allow_failures:
         - php: hhvm-nightly
 
-before_script: composer install --dev
+before_script:
+    - composer install --dev
+    - cp .env.dist .env
 
 script: phpunit

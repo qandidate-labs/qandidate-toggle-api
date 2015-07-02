@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 $app = require_once __DIR__ . '/../app/bootstrap.php';
 
 $stackedApp = new Cors($app, array(
-    'allowedOrigins' => $app['allowedOrigins'],
+    'allowedOrigins' => $app['allowed_origins'],
     'allowedMethods' => array('DELETE', 'GET', 'PUT', 'POST'),
     'allowedHeaders' => array('accept', 'content-type', 'origin', 'x-requested-with'),
 ));

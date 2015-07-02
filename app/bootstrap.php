@@ -23,12 +23,23 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 $app = new Application();
 
-$configFile = __DIR__ . '/../config.json';
-if (! file_exists($configFile)) {
-    $configFile = __DIR__ . '/../config.json.dist';
-}
+$env = new \Dotenv\Dotenv(__DIR__ . '/../');
+$env->load();
+$env->required(array(
+    'TOGGLE__DEBUG',
+    'TOGGLE__REDIS_DSN',
+    'TOGGLE__ALLOWED_ORIGINS',
+    'TOGGLE__PREFIX',
+));
 
-$app->register(new ConfigServiceProvider($configFile));
+$app['debug']                 = getenv('TOGGLE__DEBUG');
+$app['redis_dsn']             = getenv('TOGGLE__REDIS_DSN');
+$app['toggle.manager.prefix'] = getenv('TOGGLE__PREFIX');
+$app['allowed_origins']       = json_decode(getenv('TOGGLE__ALLOWED_ORIGINS'));
+
+if (JSON_ERROR_NONE !== json_last_error()) {
+    throw new RuntimeException('Failed to json_decode TOGGLE__ALLOWED_ORIGINS');
+}
 
 $app['env'] = getenv('env') ?: 'dev';
 
@@ -37,7 +48,7 @@ if ($app['env'] === 'test') {
 }
 
 $app->register(new Predis\Silex\PredisServiceProvider(), array(
-    'predis.parameters' => $app['redis_uri'],
+    'predis.parameters' => $app['redis_dsn'],
 ));
 
 $app['toggle.manager.collection'] = $app->share(function ($app) {
