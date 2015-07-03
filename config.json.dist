@@ -1,6 +1,0 @@
-{
-    "debug": true,
-    "allowedOrigins": ["http://127.0.0.1"],
-    "redis_uri": "tcp://127.0.0.1:6379",
-    "toggle.manager.prefix": "feature_toggle"
-}

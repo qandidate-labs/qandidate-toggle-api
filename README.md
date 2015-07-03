@@ -19,10 +19,11 @@ Install the dependencies with composer:
 $ composer install
 ```
 
-The default configuration is mainly for local development. For running production you should create your own configuration file.
+Configuration is determined based on environment variables. Copy `.env.dist` to `.env` and adjust where needed. 
+You can override the values in the file with environment values.
+The default configuration is mainly for local development.
 
-Copy the `config.json.dist` to `config.json` and adjust where needed.
-
+The environment variable `TOGGLE__ALLOWED_ORIGINS` should be valid JSON. This is to allow arrays.
 
 ## Running the tests
 
