@@ -31,7 +31,7 @@
     },
     "require-dev": {
         "symfony/browser-kit": "~2.3",
-        "phpunit/phpunit": "~5.5"
+        "phpunit/phpunit": "~4.8"
     },
     "prefer-stable": true,
     "autoload": {
