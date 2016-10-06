@@ -9,8 +9,6 @@
  * file that was distributed with this source code.
  */
 
-use Igorw\Silex\ConfigServiceProvider;
-use Predis\Client;
 use Qandidate\Toggle\Serializer\OperatorConditionSerializer;
 use Qandidate\Toggle\Serializer\OperatorSerializer;
 use Qandidate\Toggle\Serializer\ToggleSerializer;
@@ -19,7 +17,6 @@ use Qandidate\Toggle\ToggleManager;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 $app = new Application();
 
