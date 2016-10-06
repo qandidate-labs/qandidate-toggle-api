@@ -30,7 +30,11 @@
         "vlucas/phpdotenv": "^2.0"
     },
     "require-dev": {
-        "symfony/browser-kit": "~2.3"
+        "symfony/browser-kit": "~2.3",
+        "phpunit/phpunit": "~5.5"
     },
-    "prefer-stable": true
+    "prefer-stable": true,
+    "autoload": {
+      "psr-0": {"Qandidate\\Application\\Toggle": "test/"}
+    }
 }
