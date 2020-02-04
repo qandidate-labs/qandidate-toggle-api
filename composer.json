@@ -25,7 +25,7 @@
         "php": ">=5.3.2",
         "silex/silex": "^1.0",
         "qandidate/toggle": "^0.2@dev",
-        "predis/service-provider": "^0.4@dev",
+        "predis/service-provider": "^1.0@dev",
         "asm89/stack-cors": "^1.0",
         "vlucas/phpdotenv": "^2.0"
     },
