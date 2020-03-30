@@ -4,3 +4,4 @@ composer.phar
 /vendor/
 /config.json
 .env
+.php_cs.cache

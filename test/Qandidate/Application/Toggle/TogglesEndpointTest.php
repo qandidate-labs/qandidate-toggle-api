@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the qandidate/toggle-api package.
  *
@@ -30,25 +32,25 @@ class TogglesEndpointTest extends WebTestCase
      */
     public function it_exposes_all_toggle_names()
     {
-        $client  = $this->createClient();
+        $client = $this->createClient();
         $crawler = $client->request('GET', '/toggles');
 
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertJsonStringEqualsJsonString(
             json_encode(
-                array(
-                    array(
+                [
+                    [
                         'name' => 'toggling',
-                        'conditions' => array(
-                            array(
+                        'conditions' => [
+                            [
                                 'name' => 'operator-condition',
                                 'key' => 'user_id',
-                                'operator' => array('name' => 'less-than', 'value' => 42),
-                            ),
-                        ),
-                        'status' => 'conditionally-active'
-                    )
-                )
+                                'operator' => ['name' => 'less-than', 'value' => 42],
+                            ],
+                        ],
+                        'status' => 'conditionally-active',
+                    ],
+                ]
             ),
             $client->getResponse()->getContent()
         );
@@ -59,7 +61,7 @@ class TogglesEndpointTest extends WebTestCase
      */
     public function it_can_delete_a_toggle()
     {
-        $client  = $this->createClient();
+        $client = $this->createClient();
         $crawler = $client->request('DELETE', '/toggles/toggling');
 
         $this->assertTrue($client->getResponse()->isOk());
@@ -76,7 +78,7 @@ class TogglesEndpointTest extends WebTestCase
      */
     public function it_returns_400_on_deleting_non_existing_toggle()
     {
-        $client  = $this->createClient();
+        $client = $this->createClient();
         $crawler = $client->request('DELETE', '/toggles/nothere');
 
         $this->assertFalse($client->getResponse()->isOk());
@@ -87,22 +89,22 @@ class TogglesEndpointTest extends WebTestCase
      */
     public function it_updates_a_toggle_on_put()
     {
-        $toggleData = array(
+        $toggleData = [
             'name' => 'toggling',
-            'conditions' => array(
-                array(
+            'conditions' => [
+                [
                     'name' => 'operator-condition',
                     'key' => 'company_id',
-                    'operator' => array('name' => 'greater-than', 'value' => 42),
-                ),
-            ),
-            'status' => 'conditionally-active'
-        );
+                    'operator' => ['name' => 'greater-than', 'value' => 42],
+                ],
+            ],
+            'status' => 'conditionally-active',
+        ];
         $toggle = json_encode($toggleData);
 
         // Do the PUT
-        $client  = $this->createClient();
-        $crawler = $client->request('PUT', '/toggles/toggling', array(), array(), array(), $toggle);
+        $client = $this->createClient();
+        $crawler = $client->request('PUT', '/toggles/toggling', [], [], [], $toggle);
 
         $response = $client->getResponse();
         $this->assertTrue($response->isSuccessful());
@@ -112,7 +114,7 @@ class TogglesEndpointTest extends WebTestCase
 
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertJsonStringEqualsJsonString(
-            json_encode(array($toggleData)),
+            json_encode([$toggleData]),
             $client->getResponse()->getContent()
         );
     }
@@ -122,12 +124,12 @@ class TogglesEndpointTest extends WebTestCase
      */
     public function it_does_not_accept_a_new_name_on_put()
     {
-        $toggleData = array('name' => 'new-name', 'conditions' => array());
+        $toggleData = ['name' => 'new-name', 'conditions' => []];
         $toggle = json_encode($toggleData);
 
         // Do the PUT
-        $client  = $this->createClient();
-        $crawler = $client->request('PUT', '/toggles/toggling', array(), array(), array(), $toggle);
+        $client = $this->createClient();
+        $crawler = $client->request('PUT', '/toggles/toggling', [], [], [], $toggle);
 
         $response = $client->getResponse();
         $this->assertTrue($response->isClientError());
@@ -135,7 +137,7 @@ class TogglesEndpointTest extends WebTestCase
 
     public function tearDown()
     {
-        $keys = $this->app['predis']->keys($this->app['toggle.manager.prefix'] . '*');
+        $keys = $this->app['predis']->keys($this->app['toggle.manager.prefix'].'*');
 
         foreach ($keys as $key) {
             $this->app['predis']->del($key);
@@ -145,9 +147,9 @@ class TogglesEndpointTest extends WebTestCase
     private function loadToggleFixtures(ToggleManager $manager)
     {
         // A toggle that will be active is the user id is less than 42
-        $operator  = new LessThan(42);
+        $operator = new LessThan(42);
         $condition = new OperatorCondition('user_id', $operator);
-        $toggle    = new Toggle('toggling', array($condition));
+        $toggle = new Toggle('toggling', [$condition]);
 
         $manager->add($toggle);
     }
