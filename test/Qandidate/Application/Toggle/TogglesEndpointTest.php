@@ -20,7 +20,7 @@ use Qandidate\Toggle\ToggleManager;
 
 class TogglesEndpointTest extends WebTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -30,7 +30,7 @@ class TogglesEndpointTest extends WebTestCase
     /**
      * @test
      */
-    public function it_exposes_all_toggle_names()
+    public function it_exposes_all_toggle_names(): void
     {
         $client = $this->createClient();
         $crawler = $client->request('GET', '/toggles');
@@ -59,7 +59,7 @@ class TogglesEndpointTest extends WebTestCase
     /**
      * @test
      */
-    public function it_can_delete_a_toggle()
+    public function it_can_delete_a_toggle(): void
     {
         $client = $this->createClient();
         $crawler = $client->request('DELETE', '/toggles/toggling');
@@ -76,7 +76,7 @@ class TogglesEndpointTest extends WebTestCase
     /**
      * @test
      */
-    public function it_returns_400_on_deleting_non_existing_toggle()
+    public function it_returns_400_on_deleting_non_existing_toggle(): void
     {
         $client = $this->createClient();
         $crawler = $client->request('DELETE', '/toggles/nothere');
@@ -87,7 +87,7 @@ class TogglesEndpointTest extends WebTestCase
     /**
      * @test
      */
-    public function it_updates_a_toggle_on_put()
+    public function it_updates_a_toggle_on_put(): void
     {
         $toggleData = [
             'name' => 'toggling',
@@ -122,7 +122,7 @@ class TogglesEndpointTest extends WebTestCase
     /**
      * @test
      */
-    public function it_does_not_accept_a_new_name_on_put()
+    public function it_does_not_accept_a_new_name_on_put(): void
     {
         $toggleData = ['name' => 'new-name', 'conditions' => []];
         $toggle = json_encode($toggleData);
@@ -144,7 +144,7 @@ class TogglesEndpointTest extends WebTestCase
         }
     }
 
-    private function loadToggleFixtures(ToggleManager $manager)
+    private function loadToggleFixtures(ToggleManager $manager): void
     {
         // A toggle that will be active is the user id is less than 42
         $operator = new LessThan(42);

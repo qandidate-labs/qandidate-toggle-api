@@ -23,6 +23,7 @@
     ],
     "require": {
         "php": ">=7.2",
+        "ext-json": "*",
         "silex/silex": "^1.0",
         "qandidate/toggle": "^0.2@dev",
         "predis/service-provider": "^0.4@dev",
@@ -32,7 +33,8 @@
     "require-dev": {
         "symfony/browser-kit": "^3.4||^4.0||^5.0",
         "phpunit/phpunit": "~4.8",
-        "broadway/coding-standard": "^1.0"
+        "broadway/coding-standard": "^1.0",
+        "phpstan/phpstan": "@stable"
     },
     "prefer-stable": true,
     "autoload-dev": {
