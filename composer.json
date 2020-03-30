@@ -25,13 +25,13 @@
         "php": ">=7.2",
         "ext-json": "*",
         "silex/silex": "^1.0",
-        "qandidate/toggle": "^0.2@dev",
+        "qandidate/toggle": "^2.0",
         "predis/service-provider": "^0.4@dev",
         "asm89/stack-cors": "^1.0",
         "vlucas/phpdotenv": "^2.0"
     },
     "require-dev": {
-        "symfony/browser-kit": "^3.4||^4.0||^5.0",
+        "symfony/browser-kit": "^3.4",
         "phpunit/phpunit": "~4.8",
         "broadway/coding-standard": "^1.0",
         "phpstan/phpstan": "@stable"
