@@ -22,7 +22,7 @@
       }
     ],
     "require": {
-        "php": ">=5.3.2",
+        "php": ">=7.2",
         "silex/silex": "^1.0",
         "qandidate/toggle": "^0.2@dev",
         "predis/service-provider": "^0.4@dev",
