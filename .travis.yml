@@ -9,8 +9,12 @@ matrix:
     - php: 7.3
     - php: 7.4
 
-before_script:
-    - composer install --dev
-    - cp .env.dist .env
+install:
+  - cp .env.dist .env
+  - make dependencies
 
-script: ./vendor/bin/phpunit
+script:
+  - make test
+  - make qa
+  - make license
+  - make changelog

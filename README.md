@@ -16,7 +16,7 @@ Read our blog post series about this repository at:
 Install the dependencies with composer:
 
 ```
-$ composer install
+make dependencies
 ```
 
 Configuration is determined based on environment variables. Copy `.env.dist` to `.env` and adjust where needed. 
@@ -30,8 +30,8 @@ The environment variable `TOGGLE__ALLOWED_ORIGINS` should be valid JSON. This is
 We use PHPUnit, so to run the tests simply run:
 
 ```
-$ docker-compose up -d
-$ vendor/bin/phpunit
+docker-compose up -d
+make test
 ```
 
 ## Running the app
