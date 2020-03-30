@@ -34,7 +34,7 @@ $env->required([
 $app['debug'] = getenv('TOGGLE__DEBUG');
 $app['redis_dsn'] = getenv('TOGGLE__REDIS_DSN');
 $app['toggle.manager.prefix'] = getenv('TOGGLE__PREFIX');
-$app['allowed_origins'] = json_decode(getenv('TOGGLE__ALLOWED_ORIGINS'));
+$app['allowed_origins'] = getenv('TOGGLE__ALLOWED_ORIGINS') ? json_decode((string) getenv('TOGGLE__ALLOWED_ORIGINS'), true) : [];
 
 if (JSON_ERROR_NONE !== json_last_error()) {
     throw new RuntimeException('Failed to json_decode TOGGLE__ALLOWED_ORIGINS');
@@ -79,9 +79,7 @@ $app->get('/toggles', function () use ($app) {
 });
 
 $app['request_to_toggle'] = $app->protect(function (Request $request) use ($app) {
-    $serialized = $request->getContent();
-
-    $data = json_decode($serialized, true);
+    $data = json_decode((string) $request->getContent(), true);
 
     if (JSON_ERROR_NONE != json_last_error()) {
         return null;
