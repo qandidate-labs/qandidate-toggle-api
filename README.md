@@ -30,6 +30,7 @@ The environment variable `TOGGLE__ALLOWED_ORIGINS` should be valid JSON. This is
 We use PHPUnit, so to run the tests simply run:
 
 ```
+$ docker-compose up -d
 $ vendor/bin/phpunit
 ```
 
