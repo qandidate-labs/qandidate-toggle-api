@@ -49,6 +49,7 @@ class TogglesEndpointTest extends WebTestCase
                             ],
                         ],
                         'status' => 'conditionally-active',
+                        'strategy' => 'affirmative',
                     ],
                 ]
             ),
@@ -76,12 +77,12 @@ class TogglesEndpointTest extends WebTestCase
     /**
      * @test
      */
-    public function it_returns_400_on_deleting_non_existing_toggle(): void
+    public function it_does_not_error_when_deleting_non_existing_toggle(): void
     {
         $client = $this->createClient();
         $crawler = $client->request('DELETE', '/toggles/nothere');
 
-        $this->assertFalse($client->getResponse()->isOk());
+        $this->assertTrue($client->getResponse()->isOk());
     }
 
     /**
@@ -99,6 +100,7 @@ class TogglesEndpointTest extends WebTestCase
                 ],
             ],
             'status' => 'conditionally-active',
+            'strategy' => 'affirmative',
         ];
         $toggle = json_encode($toggleData);
 

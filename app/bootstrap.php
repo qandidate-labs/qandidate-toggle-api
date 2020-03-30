@@ -103,11 +103,7 @@ $app->put('/toggles/{name}', function (Request $request, $name) use ($app) {
 });
 
 $app->delete('/toggles/{name}', function ($name) use ($app) {
-    $removed = $app['toggle.manager']->remove($name);
-
-    if (!$removed) {
-        return new Response(sprintf('Unable to delete toggle "%s"', $name), 400);
-    }
+    $app['toggle.manager']->remove($name);
 
     return new Response('OK');
 });
