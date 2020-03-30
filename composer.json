@@ -30,8 +30,9 @@
         "vlucas/phpdotenv": "^2.0"
     },
     "require-dev": {
-        "symfony/browser-kit": "~2.3",
-        "phpunit/phpunit": "~4.8"
+        "symfony/browser-kit": "^3.4||^4.0||^5.0",
+        "phpunit/phpunit": "~4.8",
+        "broadway/coding-standard": "^1.0"
     },
     "prefer-stable": true,
     "autoload-dev": {
