@@ -24,15 +24,15 @@
     "require": {
         "php": ">=7.2",
         "ext-json": "*",
-        "silex/silex": "^1.0",
+        "silex/silex": "^2.0",
         "qandidate/toggle": "^2.0",
-        "predis/service-provider": "^0.4@dev",
+        "predis/service-provider": "^2.0",
         "asm89/stack-cors": "^1.0",
         "vlucas/phpdotenv": "^2.0"
     },
     "require-dev": {
         "symfony/browser-kit": "^3.4",
-        "phpunit/phpunit": "~4.8",
+        "phpunit/phpunit": "^7.0",
         "broadway/coding-standard": "^1.0",
         "phpstan/phpstan": "@stable"
     },

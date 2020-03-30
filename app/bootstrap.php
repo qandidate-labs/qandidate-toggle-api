@@ -46,23 +46,23 @@ if ('test' === $app['env']) {
     $app['toggle.manager.prefix'] .= '_test';
 }
 
-$app->register(new Predis\Silex\PredisServiceProvider(), [
+$app->register(new Predis\Silex\ClientServiceProvider(), [
     'predis.parameters' => $app['redis_dsn'],
 ]);
 
-$app['toggle.manager.collection'] = $app->share(function ($app) {
+$app['toggle.manager.collection'] = $app->factory(function ($app) {
     return new PredisCollection($app['toggle.manager.prefix'], $app['predis']);
 });
 
-$app['toggle.manager'] = $app->share(function ($app) {
+$app['toggle.manager'] = $app->factory(function ($app) {
     return new ToggleManager($app['toggle.manager.collection']);
 });
 
-$app['toggle.operator_condition_serializer'] = $app->share(function ($app) {
+$app['toggle.operator_condition_serializer'] = $app->factory(function ($app) {
     return new OperatorConditionSerializer(new OperatorSerializer());
 });
 
-$app['toggle.serializer'] = $app->share(function ($app) {
+$app['toggle.serializer'] = $app->factory(function ($app) {
     return new ToggleSerializer($app['toggle.operator_condition_serializer']);
 });
 
