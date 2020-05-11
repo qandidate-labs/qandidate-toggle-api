@@ -27,7 +27,7 @@
         "silex/silex": "^2.0",
         "qandidate/toggle": "^2.0",
         "predis/service-provider": "^2.0",
-        "asm89/stack-cors": "^1.0",
+        "asm89/stack-cors": "^2.0",
         "vlucas/phpdotenv": "^2.0"
     },
     "require-dev": {
