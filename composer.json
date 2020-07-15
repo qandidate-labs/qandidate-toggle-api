@@ -28,7 +28,7 @@
         "qandidate/toggle": "^2.0",
         "predis/service-provider": "^2.0",
         "asm89/stack-cors": "^2.0",
-        "vlucas/phpdotenv": "^2.0"
+        "vlucas/phpdotenv": "^5.0"
     },
     "require-dev": {
         "symfony/browser-kit": "^4.4",
