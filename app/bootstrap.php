@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 $app = new Application();
 
-$env = new \Dotenv\Dotenv(__DIR__.'/../');
+$env = \Dotenv\Dotenv::createImmutable(__DIR__.'/../');
 $env->load();
 $env->required([
     'TOGGLE__DEBUG',
