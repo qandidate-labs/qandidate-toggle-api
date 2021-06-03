@@ -4,4 +4,4 @@ composer.phar
 /vendor/
 /config.json
 .env
-.php_cs.cache
+.php-cs-fixer.cache
