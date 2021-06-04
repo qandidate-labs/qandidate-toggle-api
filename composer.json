@@ -32,7 +32,7 @@
     },
     "require-dev": {
         "symfony/browser-kit": "^4.4",
-        "phpunit/phpunit": "^7.0",
+        "phpunit/phpunit": "^9.5",
         "broadway/coding-standard": "^1.2",
         "phpstan/phpstan": "@stable"
     },
