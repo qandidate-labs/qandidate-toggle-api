@@ -3,7 +3,7 @@ Toggle API
 
 An API for managing your toggles, uses Redis to store the toggle collection.
 
-[![Build Status](https://www.travis-ci.com/qandidate-labs/qandidate-toggle-api.svg?branch=master)](https://www.travis-ci.com/qandidate-labs/qandidate-toggle-api)
+![build status](https://github.com/qandidate-labs/qandidate-toggle-api/actions/workflows/ci.yml/badge.svg)
 
 ## About
 
