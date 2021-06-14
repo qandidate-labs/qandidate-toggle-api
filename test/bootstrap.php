@@ -13,12 +13,8 @@ declare(strict_types=1);
 
 namespace Qandidate\Application\Toggle;
 
-use Silex\WebTestCase as BaseWebTestCase;
+use Symfony\Component\Dotenv\Dotenv;
 
-class WebTestCase extends BaseWebTestCase
-{
-    public function createApplication()
-    {
-        return require __DIR__.'/../../../../app/bootstrap.php';
-    }
-}
+require dirname(__DIR__).'/vendor/autoload.php';
+
+(new Dotenv())->bootEnv(dirname(__DIR__).'/.env');

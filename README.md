@@ -19,7 +19,7 @@ Install the dependencies with composer:
 make dependencies
 ```
 
-Configuration is determined based on environment variables. Copy `.env.dist` to `.env` and adjust where needed. 
+Configuration is determined based on environment variables. See the `.env.*` files.
 You can override the values in the file with environment values.
 The default configuration is mainly for local development.
 
@@ -36,7 +36,7 @@ make test
 
 ## Running the app
 
-With your favorite webserver (or with `php -S` for local testing) point your document root to the web folder.
+With your favorite webserver (or with `php -S 127.0.0.1:1337 -t public` for local testing) point your document root to the `public` folder.
 
 ## Endpoints
 

@@ -14,19 +14,22 @@ declare(strict_types=1);
 require_once __DIR__.'/../vendor/autoload.php';
 
 use Asm89\Stack\Cors;
+use Qandidate\Application\Toggle\Kernel;
+use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\Request;
 
-$app = require_once __DIR__.'/../app/bootstrap.php';
+(new Dotenv())->bootEnv(dirname(__DIR__).'/.env');
 
-$stackedApp = new Cors($app, [
-    'allowedOrigins' => $app['allowed_origins'],
+$kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
+
+$stackedApp = new Cors($kernel, [
+    'allowedOrigins' => $_SERVER['TOGGLE__ALLOWED_ORIGINS'] ? json_decode((string) $_SERVER['TOGGLE__ALLOWED_ORIGINS'], true) : [],
     'allowedMethods' => ['DELETE', 'GET', 'PUT', 'POST'],
     'allowedHeaders' => ['accept', 'content-type', 'origin', 'x-requested-with'],
 ]);
 
 $request = Request::createFromGlobals();
-
 $response = $stackedApp->handle($request);
-$response->send();
 
-$app->terminate($request, $response);
+$response->send();
+$kernel->terminate($request, $response);

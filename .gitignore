@@ -3,5 +3,9 @@ composer.lock
 composer.phar
 /vendor/
 /config.json
-.env
 .php-cs-fixer.cache
+.phpunit.result.cache
+/var/
+/.env.local
+/.env.local.php
+/.env.*.local

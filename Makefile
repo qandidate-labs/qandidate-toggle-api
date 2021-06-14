@@ -21,7 +21,7 @@ php-cs-fixer-ci:
 
 PHONY: phpstan
 phpstan:
-	vendor/bin/phpstan analyse --level=max app/ web/
+	vendor/bin/phpstan analyse --level=max src/ public/
 
 .PHONY: changelog
 changelog:
