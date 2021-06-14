@@ -1,43 +1,63 @@
 {
-    "name": "qandidate/toggle-api",
-    "description": "Api interface for your toggles.",
-    "keywords": ["feature", "flipping", "flip", "switch", "bits", "trigger", "toggle", "api"],
-    "license": "MIT",
-    "authors": [
-      {
-        "name": "Alexander",
-        "email": "iam.asm89@gmail.com"
-      },
-      {
-        "name": "othillo",
-        "email": "othillo@othillo.nl"
-      },
-      {
-        "name": "Willem-Jan",
-        "email": "wjzijderveld@gmail.com"
-      },
-      {
-        "name": "Qandidate.com",
-        "homepage": "http://labs.qandidate.com/"
-      }
-    ],
-    "require": {
-        "php": ">=7.2",
-        "ext-json": "*",
-        "silex/silex": "^2.0",
-        "qandidate/toggle": "^2.0",
-        "predis/service-provider": "^2.0",
-        "asm89/stack-cors": "^2.0",
-        "vlucas/phpdotenv": "^5.0"
+  "name": "qandidate/toggle-api",
+  "description": "Api interface for your toggles.",
+  "keywords": [
+    "feature",
+    "flipping",
+    "flip",
+    "switch",
+    "bits",
+    "trigger",
+    "toggle",
+    "api"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexander",
+      "email": "iam.asm89@gmail.com"
     },
-    "require-dev": {
-        "symfony/browser-kit": "^4.4",
-        "phpunit/phpunit": "^7.0",
-        "broadway/coding-standard": "^1.2",
-        "phpstan/phpstan": "@stable"
+    {
+      "name": "othillo",
+      "email": "othillo@othillo.nl"
     },
-    "prefer-stable": true,
-    "autoload-dev": {
-      "psr-0": {"Qandidate\\Application\\Toggle": "test/"}
+    {
+      "name": "Willem-Jan",
+      "email": "wjzijderveld@gmail.com"
+    },
+    {
+      "name": "Qandidate.com",
+      "homepage": "http://labs.qandidate.com/"
     }
+  ],
+  "require": {
+    "php": ">=7.2",
+    "ext-json": "*",
+    "qandidate/toggle": "^2.0",
+    "asm89/stack-cors": "^2.0",
+    "symfony/http-foundation": "^5.2",
+    "symfony/http-kernel": "^5.2",
+    "symfony/framework-bundle": "^5.2",
+    "qandidate/toggle-bundle": "^1.4",
+    "symfony/security-bundle": "^5.2",
+    "predis/predis": "^1.1",
+    "symfony/dotenv": "^5.2",
+    "symfony/dependency-injection": "^5.2"
+  },
+  "require-dev": {
+    "symfony/browser-kit": "^5.2",
+    "phpunit/phpunit": "^8.0",
+    "broadway/coding-standard": "^1.2",
+    "phpstan/phpstan": "@stable"
+  },
+  "autoload": {
+    "psr-4": {
+      "Qandidate\\Application\\Toggle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Qandidate\\Application\\Toggle\\": "test/"
+    }
+  }
 }
