@@ -119,7 +119,7 @@ class Kernel extends BaseKernel
         $toggleManager = $this->container->get('qandidate.toggle.manager');
 
         $toggleSerializer = new ToggleSerializer(new OperatorConditionSerializer(new OperatorSerializer()));
-        $toggle = $toggleSerializer->deserialize(json_decode((string) $request->getContent(), true));
+        $toggle = $toggleSerializer->deserialize((array) json_decode((string) $request->getContent(), true));
 
         if ($name !== $toggle->getName()) {
             return new Response('Name of toggle can not be changed.', Response::HTTP_BAD_REQUEST);
