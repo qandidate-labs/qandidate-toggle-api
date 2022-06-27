@@ -40,7 +40,7 @@
     "symfony/framework-bundle": "^5.2",
     "qandidate/toggle-bundle": "^1.4.1",
     "symfony/security-bundle": "^5.2",
-    "predis/predis": "^1.1",
+    "predis/predis": "^1.1||^2.0",
     "symfony/dotenv": "^5.2",
     "symfony/dependency-injection": "^5.2"
   },
