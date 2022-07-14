@@ -66,7 +66,7 @@ jobs:
           delete-branch: true
           title: Apply coding standards
           draft: false
-          base: master`
+          base: master
 
   static-analysis:
     name: "Static analysis"
