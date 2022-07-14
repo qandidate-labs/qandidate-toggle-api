@@ -70,7 +70,7 @@ class TogglesEndpointTest extends WebTestCase
                     'strategy' => 'affirmative',
                 ],
             ]
-        ),
+            ),
             $this->client->getResponse()->getContent()
         );
     }
