@@ -19,7 +19,7 @@ php-cs-fixer:
 php-cs-fixer-ci:
 	vendor/bin/php-cs-fixer fix --no-interaction --allow-risky=yes --diff --verbose
 
-PHONY: phpstan
+.PHONY: phpstan
 phpstan:
 	vendor/bin/phpstan analyse --level=max src/ public/
 
