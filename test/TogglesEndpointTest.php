@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Qandidate\Application\Toggle;
 
+use PHPUnit\Framework\Attributes\Test;
 use Predis\Client;
 use Qandidate\Toggle\Operator\LessThan;
 use Qandidate\Toggle\OperatorCondition;
@@ -50,7 +51,7 @@ class TogglesEndpointTest extends WebTestCase
         parent::tearDown();
     }
 
-    /** @test */
+    #[Test]
     public function it_exposes_all_toggles(): void
     {
         $this->client->request('GET', '/toggles');
@@ -75,7 +76,7 @@ class TogglesEndpointTest extends WebTestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_deletes_a_toggle(): void
     {
         $this->client->request('DELETE', '/toggles/toggling');
@@ -88,7 +89,7 @@ class TogglesEndpointTest extends WebTestCase
         $this->assertCount(0, $toggles);
     }
 
-    /** @test */
+    #[Test]
     public function it_does_not_error_when_deleting_non_existing_toggle(): void
     {
         $this->client->request('DELETE', '/toggles/nothere');
@@ -96,7 +97,7 @@ class TogglesEndpointTest extends WebTestCase
         $this->assertTrue($this->client->getResponse()->isEmpty());
     }
 
-    /** @test */
+    #[Test]
     public function it_updates_a_toggle(): void
     {
         $toggleData = [
@@ -128,7 +129,7 @@ class TogglesEndpointTest extends WebTestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_does_not_allow_changing_the_name_of_a_toggle(): void
     {
         $toggleData = ['name' => 'new-name', 'conditions' => []];

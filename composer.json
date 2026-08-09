@@ -38,7 +38,7 @@
         "symfony/http-foundation": "^6.4 || ^7.4 || ^8.0",
         "symfony/http-kernel": "^6.4 || ^7.4 || ^8.0",
         "symfony/framework-bundle": "^6.4 || ^7.4 || ^8.0",
-        "qandidate/toggle-bundle": "^1.5",
+        "qandidate/toggle-bundle": "^2.0",
         "symfony/security-bundle": "^6.4 || ^7.4 || ^8.0",
         "predis/predis": "^2.0",
         "symfony/dotenv": "^6.4 || ^7.4 || ^8.0",
