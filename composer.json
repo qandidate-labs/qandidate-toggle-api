@@ -1,63 +1,63 @@
 {
-    "name": "qandidate/toggle-api",
-    "description": "Api interface for your toggles.",
-    "keywords": [
-        "feature",
-        "flipping",
-        "flip",
-        "switch",
-        "bits",
-        "trigger",
-        "toggle",
-        "api"
-    ],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Alexander",
-            "email": "iam.asm89@gmail.com"
-        },
-        {
-            "name": "othillo",
-            "email": "othillo@othillo.nl"
-        },
-        {
-            "name": "Willem-Jan",
-            "email": "wjzijderveld@gmail.com"
-        },
-        {
-            "name": "Qandidate.com",
-            "homepage": "http://labs.qandidate.com/"
-        }
-    ],
-    "require": {
-        "php": "^8.2",
-        "ext-json": "*",
-        "qandidate/toggle": "^2.0",
-        "asm89/stack-cors": "^2.0",
-        "symfony/http-foundation": "^6.4 || ^7.4 || ^8.0",
-        "symfony/http-kernel": "^6.4 || ^7.4 || ^8.0",
-        "symfony/framework-bundle": "^6.4 || ^7.4 || ^8.0",
-        "qandidate/toggle-bundle": "^2.0",
-        "symfony/security-bundle": "^6.4 || ^7.4 || ^8.0",
-        "predis/predis": "^2.0",
-        "symfony/dotenv": "^6.4 || ^7.4 || ^8.0",
-        "symfony/dependency-injection": "^6.4 || ^7.4 || ^8.0"
+  "name": "qandidate/toggle-api",
+  "description": "Api interface for your toggles.",
+  "keywords": [
+    "feature",
+    "flipping",
+    "flip",
+    "switch",
+    "bits",
+    "trigger",
+    "toggle",
+    "api"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexander",
+      "email": "iam.asm89@gmail.com"
     },
-    "require-dev": {
-        "symfony/browser-kit": "^6.4 || ^7.4 || ^8.0",
-        "phpunit/phpunit": "^11.5",
-        "friendsofphp/php-cs-fixer": "^3.0",
-        "phpstan/phpstan": "^2.0"
+    {
+      "name": "othillo",
+      "email": "othillo@othillo.nl"
     },
-    "autoload": {
-        "psr-4": {
-            "Qandidate\\Application\\Toggle\\": "src/"
-        }
+    {
+      "name": "Willem-Jan",
+      "email": "wjzijderveld@gmail.com"
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Qandidate\\Application\\Toggle\\": "test/"
-        }
+    {
+      "name": "Qandidate.com",
+      "homepage": "http://labs.qandidate.com/"
     }
+  ],
+  "require": {
+    "php": "^8.2",
+    "ext-json": "*",
+    "qandidate/toggle": "^2.0",
+    "asm89/stack-cors": "^2.0",
+    "symfony/http-foundation": "^6.4 || ^7.4 || ^8.0",
+    "symfony/http-kernel": "^6.4 || ^7.4 || ^8.0",
+    "symfony/framework-bundle": "^6.4 || ^7.4 || ^8.0",
+    "qandidate/toggle-bundle": "^2.0",
+    "symfony/security-bundle": "^6.4 || ^7.4 || ^8.0",
+    "predis/predis": "^2.0",
+    "symfony/dotenv": "^6.4 || ^7.4 || ^8.0",
+    "symfony/dependency-injection": "^6.4 || ^7.4 || ^8.0"
+  },
+  "require-dev": {
+    "symfony/browser-kit": "^6.4 || ^7.4 || ^8.0",
+    "phpunit/phpunit": "^11.5",
+    "friendsofphp/php-cs-fixer": "^3.0",
+    "phpstan/phpstan": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Qandidate\\Application\\Toggle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Qandidate\\Application\\Toggle\\": "test/"
+    }
+  }
 }
