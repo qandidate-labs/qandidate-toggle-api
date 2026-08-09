@@ -57,19 +57,19 @@ class TogglesEndpointTest extends WebTestCase
 
         $this->assertTrue($this->client->getResponse()->isOk());
         $this->assertJsonStringEqualsJsonString(json_encode([
-                [
-                    'name' => 'toggling',
-                    'conditions' => [
-                        [
-                            'name' => 'operator-condition',
-                            'key' => 'user_id',
-                            'operator' => ['name' => 'less-than', 'value' => 42],
-                        ],
+            [
+                'name' => 'toggling',
+                'conditions' => [
+                    [
+                        'name' => 'operator-condition',
+                        'key' => 'user_id',
+                        'operator' => ['name' => 'less-than', 'value' => 42],
                     ],
-                    'status' => 'conditionally-active',
-                    'strategy' => 'affirmative',
                 ],
-            ]
+                'status' => 'conditionally-active',
+                'strategy' => 'affirmative',
+            ],
+        ]
         ),
             $this->client->getResponse()->getContent()
         );

@@ -1,0 +1,25 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: public/index.php
+
+		-
+			message: '#^Parameter \#1 \$environment of class Qandidate\\Application\\Toggle\\Kernel constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: public/index.php
+
+		-
+			message: '#^Cannot call method get\(\) on Symfony\\Component\\DependencyInjection\\ContainerInterface\|null\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: src/Kernel.php
+
+		-
+			message: '#^Method Qandidate\\Application\\Toggle\\Kernel\:\:registerBundles\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Kernel.php
