@@ -50,7 +50,6 @@ class Kernel extends BaseKernel
             'test' => 'test' === $this->environment,
         ]);
         $c->extension('security', [
-            'enable_authenticator_manager' => true,
             'firewalls' => [
                 'main' => [
                     'lazy' => true,

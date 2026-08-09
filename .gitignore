@@ -9,3 +9,4 @@ composer.phar
 /.env.local
 /.env.local.php
 /.env.*.local
+/.phpunit.cache
